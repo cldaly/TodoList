@@ -1,0 +1,11 @@
+.todo {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+}
+
+.todo span {
+    font-weight: 300;
+    font-size: 1.1em;
+    padding-left: 5px;
+}
