@@ -5,12 +5,17 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collation = "todo")
 public class Todo {
     @Id
+
     private Integer id;
     private String task;
     private boolean isComplete;
 
     public Todo(Integer id) {
         this.id = id;
+    }
+
+    public Todo() {
+
     }
 
     public Integer getId() {
