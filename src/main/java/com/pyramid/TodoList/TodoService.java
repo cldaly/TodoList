@@ -3,7 +3,6 @@ package com.pyramid.TodoList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -12,8 +11,6 @@ public class TodoService {
     @Autowired
     private TodoRepository repo;
     public void AddTodo(Todo t){
-        t.setComplete(false);
-
         repo.save(t);
     }
 
@@ -26,14 +23,7 @@ public class TodoService {
         todo.setComplete(true);
         repo.save(todo);
     }
-    public List<Todo> findAll(){
-        List<Todo> todos = new ArrayList<>();
-        List<Todo> allTodos = repo.findAll();
-        for (Todo t : allTodos) {
-            if (!t.isComplete()){
-                todos.add(t);
-            }
-        }
-        return todos;
+    public Optional<List<Todo>> findAll(){
+        return repo.findAllByCompleteFalse();
     }
 }

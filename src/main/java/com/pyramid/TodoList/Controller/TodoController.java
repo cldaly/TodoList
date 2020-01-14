@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class TodoController {
@@ -21,7 +22,7 @@ public class TodoController {
 
 }
     @GetMapping("/getTodo")
-    public List<Todo> getTodos(){
+    public Optional<List<Todo>> getTodos(){
         return ts.findAll();
 }
 }
