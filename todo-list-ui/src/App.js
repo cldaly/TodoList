@@ -7,8 +7,7 @@ class App extends React.Component {
   constructor(){
     super();
     this.state = {
-      todos: [],
-      newTodo: undefined
+      todos: []
     }
   }
 
@@ -40,21 +39,19 @@ class App extends React.Component {
         this.checkTodos();
       }).catch((err) => {
         console.log(err);
-      }).finally(() => {
-        this.setState({newTodo:''});
       })
     })
-  }
-
-  handleChange = () => {
-    
   }
 
   render(){
     return (
       <div className='main'>
         <h1>Todo List</h1>
-        <TodoList todos={this.state.todos} complete={this.complete} addTodo={this.addTodo}/>
+        <TodoList 
+          todos={this.state.todos} 
+          complete={this.complete} 
+          addTodo={this.addTodo}
+        />
       </div>
     )
   }
