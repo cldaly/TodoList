@@ -24,6 +24,7 @@ public class TodoService {
         repo.save(todo);
     }
     public Optional<List<Todo>> findAll(){
-        return repo.findByisCompleteFalse();
+        return repo.findByIsCompleteFalse();
     }
+
 }
