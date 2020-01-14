@@ -2,7 +2,7 @@ package com.pyramid.TodoList;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-@Document(collation = "todo")
+@Document(collection = "todo")
 public class Todo {
     @Id
 
