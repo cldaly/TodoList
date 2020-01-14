@@ -5,11 +5,10 @@ import com.pyramid.TodoList.TodoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
+import java.util.List;
 
 @RestController
 public class TodoController {
@@ -17,14 +16,12 @@ public class TodoController {
     private TodoService ts;
 
     @PostMapping("/addTodo")
-    public void addTodo( @RequestParam("id") Integer id,
-    HttpServletResponse response) throws IOException {
-        ts.AddTodo(new Todo(id));
-        response.sendRedirect("showTodo");
+    public void addTodo(@RequestBody Todo todo) {
+        ts.AddTodo(todo);
 
 }
-    @GetMapping("/userProduct")
-    public String testHtml(HttpServletResponse response){
-        response.setContentType("text/Html");
+    @GetMapping("/getTodo")
+    public List<Todo> getTodos(){
+        return ts.findAll();
 }
 }
