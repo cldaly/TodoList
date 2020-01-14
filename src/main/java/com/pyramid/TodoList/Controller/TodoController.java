@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@CrossOrigin (origins = "http://localhost:3000")
 public class TodoController {
     @Autowired
     private TodoService ts;
@@ -24,6 +25,10 @@ public class TodoController {
 }
     @PutMapping("/updateTodo/{id}")
             public void updateTodo(@PathVariable String id){
+        ts.updateTodo(id);
+    }
+    @DeleteMapping("/deleteTodo/{id}")
+    public void deleteTodo(@PathVariable String id){
         ts.updateTodo(id);
     }
 }
