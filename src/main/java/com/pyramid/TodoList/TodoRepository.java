@@ -1,7 +1,10 @@
 package com.pyramid.TodoList;
 
-import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.repository.CrudRepository;
 
-public interface TodoRepository extends MongoRepository<Todo, String> {
+import java.util.List;
+import java.util.Optional;
 
+public interface TodoRepository extends CrudRepository<Todo, String> {
+    public Optional<List<Todo>> findAllByCompleteFalse();
 }
