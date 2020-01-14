@@ -3,10 +3,7 @@ package com.pyramid.TodoList.Controller;
 import com.pyramid.TodoList.Todo;
 import com.pyramid.TodoList.TodoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -25,4 +22,8 @@ public class TodoController {
     public Optional<List<Todo>> getTodos(){
         return ts.findAll();
 }
+    @PutMapping("/updateTodo/{id}")
+            public void updateTodo(@PathVariable String id){
+        ts.updateTodo(id);
+    }
 }
