@@ -17,11 +17,11 @@ public class TodoService {
         repo.save(t);
     }
 
-    public Optional<Todo> getTodoByID(Integer id){
+    public Optional<Todo> getTodoByID(id id){
         return repo.findById(id);
     }
 
-    public void updateTodo(Integer id){
+    public void updateTodo(id id){
         Todo todo =  getTodoByID(id).get();
         todo.setComplete(true);
         repo.save(todo);

@@ -6,24 +6,23 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Todo {
     @Id
 
-    private String id;
+    private Integer id;
     private String task;
     private boolean isComplete;
 
-    public Todo(String task) {
-        this.task = task;
-        this.isComplete = false;
+    public Todo(Integer id) {
+        this.id = id;
     }
 
     public Todo() {
 
     }
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
