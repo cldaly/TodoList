@@ -32,7 +32,6 @@ public class TodoController {
     
     @GetMapping("/getCompleted")
     public Optional<List<Todo>> getCompleted(){
-    	System.out.println("complete route");
     	return ts.findAllComplete();
     }
     

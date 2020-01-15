@@ -30,7 +30,6 @@ public void deleteTodo(String id){
         return repo.findByIsCompleteFalse();
     }
     public Optional<List<Todo>> findAllComplete(){
-    	System.out.println("complete service");
     	return repo.findByIsCompleteTrue();
     }
 
