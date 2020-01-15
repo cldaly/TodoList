@@ -29,5 +29,8 @@ public void deleteTodo(String id){
     public Optional<List<Todo>> findAll(){
         return repo.findByIsCompleteFalse();
     }
+    public Optional<List<Todo>> findAllComplete(){
+    	return repo.findByIsComplete();
+    }
 
 }

@@ -7,7 +7,9 @@ class App extends React.Component {
   constructor(){
     super();
     this.state = {
-      todos: []
+      todos: [],
+      newTodo: '',
+      todoView: true
     }
   }
 
@@ -29,18 +31,45 @@ class App extends React.Component {
     });
   }
 
+  checkCompleted = () => {
+    Axios.get('http://localhost:8080/getCompleted').then(data => {
+      return JSON.parse(data.request.response);
+    }).then(completed => {
+      this.setState({todos:completed})
+    }).catch(err => {
+      console.log(err)
+    });
+  }
+
   componentDidMount(){
     this.checkTodos();
   }
 
-  addTodo = (input) => {
-    this.setState({newTodo:input.value}, () => {
-      Axios.post('http://localhost:8080/addTodo', {task:input.value}).then(() => {
+  addTodo = () => {
+    if (this.state.newTodo !== '' && this.state.newTodo !== undefined) {
+      Axios.post('http://localhost:8080/addTodo', {task:this.state.newTodo}).then(() => {
         this.checkTodos();
       }).catch((err) => {
         console.log(err);
+      }).finally(()=>{
+        this.setState({newTodo:''})
       })
+    }
+  }
+
+  handleChange = (e) => {
+    this.setState({newTodo:e.target.value});
+  }
+
+  changeView = () => {
+    this.setState(prevState => ({
+      todoView:!prevState.todoView
+    }),() => {
+      if (!this.state.todoView) {
+        this.checkCompleted();
+      }
     })
+    
   }
 
   render(){
@@ -51,6 +80,10 @@ class App extends React.Component {
           todos={this.state.todos} 
           complete={this.complete} 
           addTodo={this.addTodo}
+          newTodo={this.state.newTodo}
+          handleChange={this.handleChange}
+          todoView={this.state.todoView}
+          changeView={this.changeView}
         />
       </div>
     )

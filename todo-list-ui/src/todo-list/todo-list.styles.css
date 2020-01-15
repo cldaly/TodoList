@@ -1,7 +1,8 @@
 .todo-list {
+    position: relative;
     width: 400px;
     height: fit-content;
-    min-height: 500px;
+    min-height: 512px;
     margin: 20px auto;
     padding: 10px 30px 20px;
     text-align: left;
@@ -13,8 +14,39 @@
 
 .todo-list h2 {
     padding-left: 15px;
+    margin-top:20px;
     margin-bottom: 0;
     font-weight: 400;
     font-size: 2em;
     border-bottom: 1px solid rgb(192, 209, 224);
+}
+
+.todos {
+    max-height: 360px;
+    overflow: scroll;
+}
+
+.change-view {
+    position: absolute;
+    right: 20px;
+    bottom: 10px;
+    font-weight: 300;
+    opacity: 0.6;
+    text-align: right;
+    padding: 0 10px;
+    border-radius: 5px;
+    user-select: none;
+    transition: opacity background-color 0.1s linear;
+}
+
+.change-view:hover {
+    opacity: 1;
+    cursor: pointer;
+    transition: opacity background-color 0.1s linear;
+    background-color: #cde9c8;
+}
+
+.change-view:active {
+    font-weight: 400;
+    transform: translateX(3px) translateY(1px);
 }

@@ -18,15 +18,23 @@ public class TodoController {
     public void addTodo(@RequestBody Todo todo) {
         ts.AddTodo(todo);
 
-}
+    }
+    
     @GetMapping("/getTodo")
     public Optional<List<Todo>> getTodos(){
         return ts.findAll();
-}
+    }
+    
     @PutMapping("/updateTodo/{id}")
             public void updateTodo(@PathVariable String id){
         ts.updateTodo(id);
     }
+    
+    @GetMapping("/getCompleted")
+    public Optional<List<Todo>> getCompleted(){
+    	return ts.findAllComplete();
+    }
+    
     @DeleteMapping("/deleteTodo/{id}")
     public void deleteTodo(@PathVariable String id){
         ts.deleteTodo(id);
