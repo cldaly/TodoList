@@ -11,11 +11,20 @@ class App extends React.Component {
       newTodo: '',
       todoView: true
     }
+    this.checkTodos();
   }
 
   complete = (id) => {
     Axios.put(`http://localhost:8080/updateTodo/${id}`).then(() => {
       this.checkTodos();
+    }).catch((err)=>{
+      console.log(err)
+    })
+  }
+
+  deleteTodo = (id) => {
+    Axios.delete(`http://localhost:8080/deleteTodo/${id}`).then(() => {
+      this.checkCompleted();
     }).catch((err)=>{
       console.log(err)
     })
@@ -41,10 +50,6 @@ class App extends React.Component {
     });
   }
 
-  componentDidMount(){
-    this.checkTodos();
-  }
-
   addTodo = () => {
     if (this.state.newTodo !== '' && this.state.newTodo !== undefined) {
       Axios.post('http://localhost:8080/addTodo', {task:this.state.newTodo}).then(() => {
@@ -63,10 +68,13 @@ class App extends React.Component {
 
   changeView = () => {
     this.setState(prevState => ({
-      todoView:!prevState.todoView
+      todoView:!prevState.todoView,
+      todos: []
     }),() => {
       if (!this.state.todoView) {
         this.checkCompleted();
+      } else {
+        this.checkTodos();
       }
     })
     
@@ -84,6 +92,7 @@ class App extends React.Component {
           handleChange={this.handleChange}
           todoView={this.state.todoView}
           changeView={this.changeView}
+          deleteTodo={this.deleteTodo}
         />
       </div>
     )
