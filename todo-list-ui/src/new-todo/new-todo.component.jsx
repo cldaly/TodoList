@@ -12,7 +12,7 @@ export const NewTodo = ({addTodo, handleChange, newTodo}) => {
     return(
         <div className='new-todo'>
             <Button variant="outlined" size="small" color="primary" onClick={addTodo}>add</Button>
-            <TextField onKeyUp={checkEnter} onChange={handleChange} fullWidth value={newTodo} label="add a new todo" id="new" size="small" />
+            <TextField autoComplete='off' onKeyUp={checkEnter} onChange={handleChange} fullWidth value={newTodo} label="add a new todo" id="new" size="small" />
         </div>
     )
 }
